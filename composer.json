@@ -1,0 +1,22 @@
+{
+    "name": "fd6130/billplz-bundle",
+    "description": "Integrate Billplz to your Symfony applications",
+    "keywords": ["Symfony", "symfony", "bundle", "billplz"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Fd\\BillplzBundle\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.3",
+        "jomweb/billplz": "^4.1",
+        "symfony/config": "^4.4 || ^5.0",
+        "symfony/framework-bundle": "^4.4 || ^5.0",
+        "symfony/http-foundation": "^4.4 || ^5.0",
+        "symfony/http-kernel": "^4.4 || ^5.0",
+        "symfony/http-client": "^4.4 || ^5.0",
+        "symfony/yaml": "^4.4 || ^5.0"
+    }
+}
