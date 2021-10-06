@@ -11,10 +11,13 @@ class FdBillplzExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
-        // $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        // $loader->load('services.yaml');
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yaml');
 
-        // $configuration = $this->getConfiguration($configs, $container);
-        // $config = $this->processConfiguration($configuration, $configs);
+        $configuration = $this->getConfiguration($configs, $container);
+        $config = $this->processConfiguration($configuration, $configs);
+        
+        $definition = $container->getDefinition('fd.billplz.billplz');
+        $definition->setArgument(0, $config);
     }
 }

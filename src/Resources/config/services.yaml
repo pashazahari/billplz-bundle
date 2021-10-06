@@ -1,0 +1,4 @@
+services:
+    fd.billplz.billplz:
+        class: Fd\BillplzBundle\Service\Billplz
+    Fd\BillplzBundle\Service\BillplzInterface: "@fd.billplz.billplz"
