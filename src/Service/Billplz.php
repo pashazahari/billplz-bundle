@@ -3,6 +3,7 @@
 namespace Fd\BillplzBundle\Service;
 
 use Billplz\Client;
+use Laravie\Codex\Contracts\Response;
 
 class Billplz implements BillplzInterface
 {
@@ -15,7 +16,9 @@ class Billplz implements BillplzInterface
         array $config
     )
     {
-        $this->client = $config['sandbox'] == false ? Client::make($config['api_key'], $config['signature_key']) : Client::make($config['sandbox_api_key'], $config['sandbox_signature_key'])->useSandbox();
+        $this->client = $config['enable_sandbox'] == false ? 
+            Client::make($config['live']['api_key'], $config['live']['signature_key']) : 
+            Client::make($config['sandbox']['api_key'], $config['sandbox']['signature_key'])->useSandbox();
         $this->config = $config;
     }
 
@@ -24,14 +27,52 @@ class Billplz implements BillplzInterface
         return $this->client;
     }
 
-    public function isSandbox(): bool
+    public function getAllConfiguration(): array
     {
-        return $this->config['sandbox'];
+        return $this->config;
     }
 
-    public function getBillPaymentUrl(string $billId)
+    public function getCurrentConfiguration(): array
     {
-        return $this->config['sandbox'] == true ? sprintf('https://www.billplz-sandbox.com/bills/%s', $billId) : sprintf('https://www.billplz.com/bills/%s', $billId);
+        return $this->isSandbox() == false ? $this->config['live'] : $this->config['sandbox'];
+    }
+
+    public function isSandbox(): bool
+    {
+        return $this->config['enable_sandbox'];
+    }
+
+    public function getBillPaymentUrl(string $billId): string
+    {
+        return $this->isSandbox() == true ? sprintf('https://www.billplz-sandbox.com/bills/%s', $billId) : sprintf('https://www.billplz.com/bills/%s', $billId);
+    }
+
+    public function createBill
+    (
+        string $collectionKey,
+        ?string $email = null,
+        ?string $mobile = null,
+        string $name,
+        int|string $amount,
+        string $callbackUrl,
+        string $description,
+        array $optional = []
+    ) : Response
+    {
+        $collection = $this->getCurrentConfiguration()['collection'];
+
+        $index = array_search($collectionKey, array_column($collection, 'name'));
+        if($index === false)
+        {
+            throw new \LogicException(sprintf("Unable to find '%s' from the collection.", $collectionKey));
+        }
+
+        return $this->client->bill()
+            ->create
+            (
+                $collection[$index]['id'], $email, $mobile, $name, \Duit\MYR::given($amount * 100), $callbackUrl, $description, $optional
+            )
+        ;
     }
 
     public function computeRedirectSignature(array $params)
