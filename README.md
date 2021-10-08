@@ -34,7 +34,7 @@ fd_billplz:
     fd_billplz:
     api_key: "%env(BILLPLZ_API_KEY)%"
     signature_key: "%env(BILLPLZ_SIGNATURE_KEY)%"
-    sandbox: "%env(BILLPLZ_SANDBOX)%" # true or false
+    sandbox: "%env(bool:BILLPLZ_SANDBOX)%" # true or false
     sandbox_api_key: "%env(BILLPLZ_SANDBOX_API_KEY)%"
     sandbox_signature_key: "%env(BILLPLZ_SANDBOX_SIGNATURE_KEY)%"
 ```
