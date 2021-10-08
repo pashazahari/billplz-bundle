@@ -12,7 +12,7 @@ Installation
 Requirement
 -------
 
-- PHP7.4+
+- PHP 7.4+
 - Symfony 4.4+
 
 
@@ -48,6 +48,9 @@ Usage
 -----
 
 ```php
+/**
+ * Note: if you have set 'enable_sandbox' to true, billplz will use 'sandbox' configuration only.
+ */
 function createPayment(BillplzInterface $billplz)
 {
     /**
