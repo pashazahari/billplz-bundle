@@ -36,7 +36,7 @@ fd_billplz:
         api_key: "%env(BILLPLZ_SANDBOX_API_KEY)%"
         signature_key: "%env(BILLPLZ_SANDBOX_SIGNATURE_KEY)%"
         collection: # add your bill collection here
-            - { name: "", id: ""} # "name" is the key name of the collection, "id" is the collection id
+            - { name: "", id: ""} # will use when create new bill
     live:
         api_key: "%env(BILLPLZ_API_KEY)%"
         signature_key: "%env(BILLPLZ_SIGNATURE_KEY)%"
@@ -50,7 +50,12 @@ Usage
 ```php
 function createPayment(BillplzInterface $billplz)
 {
-    $response = $billplz->createBill("collection_name", "lorem@ipsum.com", null, "Lorem Ipsum", 100, "https://127.0.0.1/payment/success", "A new product", []);
+    /**
+     * Assume you have set { name: "product", id: "ae12345"} in collection.
+     * 
+     * It will get the id from the given name, you don't have to do anything. 
+     */
+    $response = $billplz->createBill("product", "lorem@ipsum.com", null, "Lorem Ipsum", 100, "https://127.0.0.1/payment/success", "A new product", []);
 
     // your own logic here...
 }
