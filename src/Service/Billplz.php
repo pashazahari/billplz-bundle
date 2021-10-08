@@ -3,9 +3,8 @@
 namespace Fd\BillplzBundle\Service;
 
 use Billplz\Client;
-use Symfony\Component\HttpFoundation\Request;
 
-class Billplz
+class Billplz implements BillplzInterface
 {
     private Client $client;
 

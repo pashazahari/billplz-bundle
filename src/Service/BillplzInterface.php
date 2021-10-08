@@ -8,10 +8,9 @@ use Billplz\Client;
  * @method Client getClient()
  * @method bool isSandbox()
  * @method string getBillPaymentUrl(string $billId)
- * @method string|false computeRedirectSignature(array $params)
- * @method string|false computeRedirectSignature(array $params)
  */
 interface BillplzInterface
 {
-
+    public function computeRedirectSignature(array $params);
+    public function computeCallbackSignature(array $params);
 }
