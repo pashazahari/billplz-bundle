@@ -3,20 +3,20 @@
 This is a billplz payment gateway wrapper for Symfony application.
 
 
-Install
+Installation
 -------
 
 `composer require fd6130/billplz-bundle`
 
 
-Require
+Requirement
 -------
 
 - PHP7.4+
 - Symfony 4.4+
 
 
-Config
+Configuration
 ------
 
 ```
