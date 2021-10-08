@@ -14,11 +14,11 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('api_key')->end()
-                ->scalarNode('signature_key')->end()
-                ->booleanNode('sandbox')->defaultTrue()->end()
-                ->scalarNode('sandbox_api_key')->end()
-                ->scalarNode('sandbox_signature_key')->end()
+                ->scalarNode('api_key')->isRequired()->end()
+                ->scalarNode('signature_key')->isRequired()->end()
+                ->booleanNode('sandbox')->isRequired()->end()
+                ->scalarNode('sandbox_api_key')->isRequired()->end()
+                ->scalarNode('sandbox_signature_key')->isRequired()->end()
             ->end()
         ;
 
