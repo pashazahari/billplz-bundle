@@ -14,5 +14,5 @@ interface BillplzInterface
     public function getCurrentConfiguration(): array;
     public function computeRedirectSignature(array $params);
     public function computeCallbackSignature(array $params);
-    public function createBill(string $collectionKey, ?string $email = null, ?string $mobile = null, string $name, int|string $amount, string $callbackUrl, string $description, array $optional = []): Response;
+    public function createBill(string $collectionKey, ?string $email = null, ?string $mobile = null, string $name = null, int|string $amount = null, string $callbackUrl = null, string $description = null, array $optional = []): Response;
 }
