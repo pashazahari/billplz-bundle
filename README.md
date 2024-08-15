@@ -12,8 +12,8 @@ Installation
 Requirement
 -------
 
-- PHP 7.4+
-- Symfony 4.4+
+- PHP 8.0+
+- Symfony 8.0+
 
 
 Configuration
