@@ -6,7 +6,7 @@ This is a billplz payment gateway wrapper for Symfony application.
 Installation
 -------
 
-`composer require fd6130/billplz-bundle`
+`composer require pashazahari/billplz-bundle`
 
 
 Requirement
