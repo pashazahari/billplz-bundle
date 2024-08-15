@@ -1,12 +1,12 @@
 {
-    "name": "fd6130/billplz-bundle",
+    "name": "pashazahari/billplz-bundle",
     "description": "Integrate Billplz to your Symfony applications",
     "keywords": ["Symfony", "symfony", "bundle", "billplz"],
     "type": "symfony-bundle",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Fd\\BillplzBundle\\": "src/"
+            "pz\\BillplzBundle\\": "src/"
         }
     },
     "require": {
